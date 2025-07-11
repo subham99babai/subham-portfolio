@@ -4,13 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Subham Pattanayak | SDET Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #1f4e79;
+      --bg: #f5f5f5;
+      --text: #333;
+      --dark-bg: #1c1c1c;
+      --dark-text: #eaeaea;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
     }
     .container {
       max-width: 900px;
@@ -23,14 +39,14 @@
     }
     h1 {
       margin: 0;
-      font-size: 2rem;
-      color: #1f4e79;
+      font-size: 2.5rem;
+      color: var(--primary);
     }
     h2 {
       border-bottom: 2px solid #ccc;
       padding-bottom: 0.3rem;
       margin-top: 2rem;
-      color: #1f4e79;
+      color: var(--primary);
     }
     ul {
       padding-left: 1.2rem;
@@ -41,17 +57,55 @@
     .project-title {
       font-weight: bold;
     }
-    .contact {
+    .contact, .dark-toggle {
       text-align: center;
       margin-top: 2rem;
     }
     .resume-btn {
-      background: #1f4e79;
+      background: var(--primary);
       color: white;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       text-decoration: none;
+      font-weight: 600;
+    }
+    .dark-toggle button {
+      background: none;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dark-toggle button:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 15px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    section {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.6s forwards;
+    }
+    section:nth-of-type(2) { animation-delay: 0.2s; }
+    section:nth-of-type(3) { animation-delay: 0.4s; }
+    section:nth-of-type(4) { animation-delay: 0.6s; }
+    section:nth-of-type(5) { animation-delay: 0.8s; }
+    section:nth-of-type(6) { animation-delay: 1s; }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -65,52 +119,56 @@
 
     <section>
       <h2>About Me</h2>
-      <p>4+ years of experience in SDET roles with expertise in Selenium (Python), Postman, JMeter, and PyTest. Worked across OTT, CDN, and healthcare domains. Quick learner and passionate about automation and testing at scale.</p>
+      <p>I'm a passionate and detail-oriented Software Development Engineer in Test (SDET) with 4+ years of experience in UI, API, and performance testing. Skilled in Selenium, Python, Postman, JMeter, and CI/CD tools. My focus is delivering high-quality, scalable automation for fast-paced products across OTT, CDN, and healthcare domains.</p>
     </section>
 
     <section>
       <h2>Skills</h2>
       <ul>
-        <li>Python, Selenium, PyTest</li>
-        <li>Postman, JMeter</li>
-        <li>Docker, Kubernetes, AWS</li>
-        <li>CI/CD, GitHub, Putty</li>
-        <li>HTML, CSS</li>
+        <li>Automation: Selenium, PyTest, BDD</li>
+        <li>API Testing: Postman, Swagger, Python requests</li>
+        <li>Performance: JMeter</li>
+        <li>DevOps: Docker, Kubernetes, AWS, GitHub Actions</li>
+        <li>Web: HTML, CSS, Git, Putty</li>
+        <li>Machine Learning: Image/Video Processing (OpenCV, NumPy)</li>
       </ul>
     </section>
 
     <section>
       <h2>Projects</h2>
       <ul>
-        <li><span class="project-title">Hotel Management System:</span> UI & API testing using Selenium & Postman</li>
-        <li><span class="project-title">STB Monitoring:</span> Selenium automation and Storm Test Tool</li>
-        <li><span class="project-title">CDN Manager:</span> API performance testing with JMeter</li>
-        <li><span class="project-title">AI Video Analytics:</span> Python ML for image/video processing</li>
-        <li><span class="project-title">Healthcare App:</span> Dockerized testing pipelines on AWS</li>
+        <li><span class="project-title">Hotel Management System:</span> UI & API test automation with Selenium & Postman</li>
+        <li><span class="project-title">Set Top Box Monitoring:</span> STB test automation with Selenium and Storm Test Tool</li>
+        <li><span class="project-title">CDN Manager:</span> API performance testing using JMeter for media distribution</li>
+        <li><span class="project-title">AI Video Analytics:</span> Python ML-based script for detecting first TV frame in recordings</li>
+        <li><span class="project-title">Healthcare Pipeline:</span> Automation + cloud deployment using Docker, AWS, CI/CD</li>
       </ul>
     </section>
 
     <section>
       <h2>Experience</h2>
       <p><strong>Infinite Computer Solutions</strong> (2021–Present)</p>
-      <p>Associate Software Engineer (SDET)</p>
+      <p><strong>Role:</strong> Associate Software Engineer (SDET)</p>
       <ul>
-        <li>End-to-end UI & API automation</li>
-        <li>Client: Tata Play</li>
-        <li>Recognized for automation ownership</li>
+        <li>Lead ownership of STB and portal automation efforts</li>
+        <li>Developed CI-integrated Selenium pipelines and API regression suites</li>
+        <li>Worked directly with Tata Play, gaining client appreciation</li>
       </ul>
     </section>
 
     <section>
       <h2>Education</h2>
       <ul>
-        <li>B.Tech, Electronics & Control Systems – KIIT University (2017–2021)</li>
-        <li>Higher Secondary – 80% Aggregate</li>
+        <li><strong>KIIT University</strong> – B.Tech in Electronics & Control Systems (2017–2021)</li>
+        <li><strong>Higher Secondary</strong> – 80% Aggregate (2015–2017)</li>
       </ul>
     </section>
 
     <div class="contact">
-      <a class="resume-btn" href="#">Download Resume</a>
+      <a class="resume-btn" href="https://github.com/subham99babai/subham-portfolio/raw/main/Subham_Resume_Python_Automation_Tester.pdf" download>Download Resume</a>
+    </div>
+    <div class="dark-toggle">
+      <button onclick="document.body.classList.toggle('dark-mode')">Toggle Dark Mode</button>
     </div>
   </div>
 </body>
